@@ -1,0 +1,15 @@
+{
+    "port": 3000,
+    "host": "localhost",
+    "mongoose": {
+        "url": "mongodb://localhost/task-manager",
+        "options": {
+            "server": {
+                "socketOptions": {
+                    "keepAlive": 1
+                }
+            }
+        }
+    }
+}
+
