@@ -3,14 +3,16 @@ module.exports = () => ({
     {
       test: /\.js$/,
       exclude: [/node_modules/, /public/],
-      use: [{
-        loader: "babel-loader"
-      }]
+      use: [
+        {
+          loader: 'babel-loader',
+        },
+      ],
     },
     {
       test: /\.css$/,
-      loader: "style-loader!css-loader!autoprefixer-loader",
-      exclude: [/node_modules/, /public/]
+      loader: 'style-loader!css-loader!autoprefixer-loader',
+      exclude: [/node_modules/, /public/],
     },
     // {
     //   test: /\.less$/,
@@ -28,5 +30,5 @@ module.exports = () => ({
     //     loader: "react-hot-loader/webpack!babel-loader"
     //   }]
     // }
-  ]
+  ],
 });

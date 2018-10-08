@@ -1,4 +1,4 @@
-import {css} from "react-emotion";
+import { css } from 'react-emotion';
 
 export default css`
   padding: 7px;

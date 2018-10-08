@@ -1,5 +1,5 @@
 require('babel-core/register')({
-    retainLines: true
+  retainLines: true,
 });
 require('babel-polyfill');
 require('./app.js');

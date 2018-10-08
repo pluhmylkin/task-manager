@@ -1,28 +1,28 @@
-import mongoose from '../helpers/mongoose'
+import mongoose from '../helpers/mongoose';
 const Schema = mongoose.Schema;
 
 let schema = new Schema({
-    title: {
-        type: String,
-        requited: true
-    },
-    priority: {
-        type: String,
-        enum: ['High', 'Middle', 'Low'],
-        default: 'Low'
-    },
-    status: {
-        type: String,
-        enum: ['New', 'Active', 'Resolved', 'Closed'],
-        default: 'New'
-    },
-    finish: {
-        type: Date,
-        default: Date.now
-    },
-    position: Number
+  title: {
+    type: String,
+    requited: true,
+  },
+  priority: {
+    type: String,
+    enum: ['High', 'Middle', 'Low'],
+    default: 'Low',
+  },
+  status: {
+    type: String,
+    enum: ['New', 'Active', 'Resolved', 'Closed'],
+    default: 'New',
+  },
+  finish: {
+    type: Date,
+    default: Date.now,
+  },
+  position: Number,
 });
 
 const Task = mongoose.model('Task', schema);
 
-export default Task
+export default Task;
