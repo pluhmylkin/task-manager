@@ -1,8 +1,8 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 
-import TaskEditor from './TaskEditor.jsx'
-import TasksGrid from './TasksGrid.jsx'
+import TaskEditor from './TaskEditor.js'
+import TasksGrid from './TasksGrid.js'
 
 import apiTask from '../api/task'
 import appStyle from '../emotion/app'

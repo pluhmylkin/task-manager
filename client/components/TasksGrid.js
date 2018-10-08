@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class'
 import Masonry from 'react-masonry-component';
 
 import taskStyle from '../emotion/task'
-import Task from './Task.jsx'
+import Task from './Task.js'
 
 const TasksGrid = createReactClass({
     render(){
