@@ -1,20 +1,21 @@
-import React from 'react';
-import createReactClass from 'create-react-class';
-
+import React, { Component } from 'react';
 import inputStyle from '../emotion/input';
 import buttonStyle from '../emotion/button';
 import taskEditorStyle from '../emotion/taskEditor';
+import { func } from 'prop-types';
 
-const TaskEditor = createReactClass({
-  getInitialState() {
-    return {
-      title: 'test',
-    };
-  },
+class TaskEditor extends Component {
+  static propTypes = {
+    onTaskAdd: func.isRequired,
+  };
+
+  state = {
+    title: '',
+  };
 
   handleTitleChange(event) {
     this.setState({ title: event.target.value });
-  },
+  }
 
   handleTaskAdd() {
     const newTask = {
@@ -23,24 +24,25 @@ const TaskEditor = createReactClass({
 
     this.props.onTaskAdd(newTask);
     this.setState({ title: '' });
-  },
+  }
 
   render() {
+    const { title } = this.state;
     return (
       <div className={taskEditorStyle}>
         <input
           type="text"
           className={inputStyle}
           placeholder="Введите задачу"
-          value={this.state.title}
+          value={title}
           onChange={this.handleTitleChange}
         />
-        <button className={buttonStyle} disabled={!this.state.title} onClick={this.handleTaskAdd}>
+        <button className={buttonStyle} disabled={!title} onClick={this.handleTaskAdd}>
           Добавить
         </button>
       </div>
     );
-  },
-});
+  }
+}
 
 export default TaskEditor;

@@ -1,19 +1,33 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
+import { string, number, func } from 'prop-types';
 import taskStyle from '../emotion/task';
 
-const Task = createReactClass({
-  render() {
-    return (
-      <div className={taskStyle}>
-        <span onClick={this.props.onDelete}>x</span>
-        <h4>{this.props.title}</h4>
-        {this.props.priority}
-        {this.props.position}
-        {this.props.status}
-      </div>
-    );
-  },
-});
+const propTypes = {
+  onDelete: func.isRequired,
+  position: number,
+  priority: string,
+  title: string,
+  status: string,
+};
+
+const defaultProps = {
+  position: 0,
+  priority: 'Low',
+  title: '',
+  status: 'New',
+};
+
+const Task = ({ title, priority, position, status, onDelete }) => (
+  <div className={taskStyle}>
+    <span onClick={onDelete}>x</span>
+    <h4>{title}</h4>
+    <p>Priority: {priority}</p>
+    <p>Position: {position}</p>
+    <p>Status: {status}</p>
+  </div>
+);
+
+Task.propTypes = propTypes;
+Task.defaultProps = defaultProps;
 
 export default Task;

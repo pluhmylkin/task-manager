@@ -6,6 +6,12 @@ module.exports = () => ({
       use: [
         {
           loader: 'babel-loader',
+          options: {
+            plugins: [
+              "transform-async-to-generator",
+              "transform-class-properties"
+            ]
+          }
         },
       ],
     },

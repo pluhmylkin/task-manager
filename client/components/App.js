@@ -1,5 +1,4 @@
-import React from 'react';
-import createReactClass from 'create-react-class';
+import React, { Component } from 'react';
 
 import TaskEditor from './TaskEditor.js';
 import TasksGrid from './TasksGrid.js';
@@ -9,22 +8,22 @@ import appStyle from '../emotion/app';
 
 import { connect } from 'react-redux';
 
-const App = createReactClass({
-  componentDidMount: function() {
+class App extends Component {
+  componentDidMount() {
     this.props.loadTasks();
-  },
+  }
 
   handleLoadTasks() {
     this.props.loadTasks();
-  },
+  }
 
   handleTaskAdd(data) {
     this.props.addTask(data);
-  },
+  }
 
   handleTaskDelete(task) {
     this.props.deleteTask(task._id);
-  },
+  }
 
   render() {
     return (
@@ -34,8 +33,8 @@ const App = createReactClass({
         <TasksGrid tasks={this.props.tasks} onTaskDelete={this.handleTaskDelete} />
       </div>
     );
-  },
-});
+  }
+}
 
 export default connect(
   state => ({
