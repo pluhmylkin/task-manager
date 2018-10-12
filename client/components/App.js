@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import TaskEditor from './TaskEditor.js';
-import TasksGrid from './TasksGrid.js';
+import TaskEditor from './TaskEditor';
+import TasksGrid from './TasksGrid';
 
 import apiTask from '../api/task';
 import appStyle from '../emotion/app';
-
-import { connect } from 'react-redux';
 
 class App extends Component {
   componentDidMount() {

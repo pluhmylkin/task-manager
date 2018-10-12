@@ -2,7 +2,7 @@ import React from 'react';
 import Masonry from 'react-masonry-component';
 import { arrayOf, string, shape, number, func } from 'prop-types';
 import taskStyle from '../emotion/task';
-import Task from './Task.js';
+import Task from './Task';
 
 const masonryOptions = {
   itemSelector: `.${taskStyle}`,
@@ -37,7 +37,7 @@ const TasksGrid = ({ tasks, onTaskDelete }) => (
         priority={task.priority}
         position={task.position}
         status={task.status}
-        onDelete={onTaskDelete.bind(null, task)}
+        onDelete={onTaskDelete}
       >
         {task.title}
       </Task>

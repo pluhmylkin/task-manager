@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { func } from 'prop-types';
 import inputStyle from '../emotion/input';
 import buttonStyle from '../emotion/button';
 import taskEditorStyle from '../emotion/taskEditor';
-import { func } from 'prop-types';
 
 class TaskEditor extends Component {
   static propTypes = {
