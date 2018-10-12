@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 import inputStyle from '../emotion/input';
-import buttonStyle from '../emotion/button';
 import taskEditorStyle from '../emotion/taskEditor';
+import BaseButton from './buttons/BaseButton';
 
 class TaskEditor extends Component {
   static propTypes = {
@@ -10,7 +10,7 @@ class TaskEditor extends Component {
   };
 
   state = {
-    title: '',
+    title: 'test',
   };
 
   handleTitleChange(event) {
@@ -18,11 +18,14 @@ class TaskEditor extends Component {
   }
 
   handleTaskAdd() {
+    const { title } = this.state;
+    const { onTaskAdd } = this.props;
+
     const newTask = {
-      title: this.state.title,
+      title,
     };
 
-    this.props.onTaskAdd(newTask);
+    onTaskAdd(newTask);
     this.setState({ title: '' });
   }
 
@@ -37,9 +40,7 @@ class TaskEditor extends Component {
           value={title}
           onChange={this.handleTitleChange}
         />
-        <button className={buttonStyle} disabled={!title} onClick={this.handleTaskAdd}>
-          Добавить
-        </button>
+        <BaseButton title="Add" onClick={this.handleTaskAdd} disabled={!title} />
       </div>
     );
   }

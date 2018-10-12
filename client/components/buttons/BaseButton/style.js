@@ -1,6 +1,6 @@
-import { css } from 'react-emotion';
+import styled from 'react-emotion';
 
-export default css`
+export default styled('button')`
   margin: 10px 0;
   padding: 10px;
   width: 100px;
