@@ -25,7 +25,7 @@ class TaskEditor extends Component {
   };
 
   state = {
-    title: 'test',
+    title: '',
   };
 
   handleTitleChange = event => {

@@ -1,11 +1,14 @@
 import React from 'react';
+import styled from 'react-emotion';
 import Masonry from 'react-masonry-component';
 import { arrayOf, string, shape, number, func } from 'prop-types';
-import taskStyle from '../emotion/task';
 import Task from './Task';
 
+const TasksGridStyle = styled('div')`
+  margin: 0 auto;
+`;
+
 const masonryOptions = {
-  itemSelector: `.${taskStyle}`,
   columnWidth: 250,
   gutter: 10,
   isFitWidth: true,
@@ -29,20 +32,23 @@ const defaultProps = {
 };
 
 const TasksGrid = ({ tasks, onTaskDelete }) => (
-  <Masonry className="TasksGrid" options={masonryOptions}>
-    {tasks && tasks.map(task => (
-      <Task
-        key={task._id}
-        title={task.title}
-        priority={task.priority}
-        position={task.position}
-        status={task.status}
-        onDelete={onTaskDelete}
-      >
-        {task.title}
-      </Task>
-    ))}
-  </Masonry>
+  <TasksGridStyle>
+    <Masonry options={masonryOptions}>
+      {tasks &&
+        tasks.map(task => (
+          <Task
+            key={task._id}
+            title={task.title}
+            priority={task.priority}
+            position={task.position}
+            status={task.status}
+            onDelete={onTaskDelete}
+          >
+            {task.title}
+          </Task>
+        ))}
+    </Masonry>
+  </TasksGridStyle>
 );
 
 TasksGrid.propTypes = propTypes;
