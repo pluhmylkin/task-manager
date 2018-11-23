@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'react-emotion';
+import { func } from 'prop-types';
 
 import TaskEditor from './TaskEditor';
 import TasksGrid from './TasksGrid';
 
 import apiTask from '../api/task';
-import appStyle from '../emotion/app';
+
+const AppStyle = styled('div')`
+  max-width: 1200px;
+  width: 100%;
+  h2 {
+    text-align: center;
+    font-weight: 500;
+    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.5);
+  }
+`;
 
 class App extends Component {
   componentDidMount() {
@@ -20,37 +31,37 @@ class App extends Component {
       .catch(err => console.error(err));
   };
 
-  handleTaskAdd(newTask) {
+  handleTaskAdd = newTask => {
     const { dispatch } = this.props;
     apiTask
       .createTask(newTask)
       .then(task => dispatch({ type: 'ADD_TASK', task }))
       .catch(err => console.error(err));
-  }
+  };
 
-  handleLoadTasks() {
+  handleLoadTasks = () => {
     this.loadTasks();
-  }
+  };
 
-  handleTaskDelete(task) {
+  handleTaskDelete = task => {
     const { dispatch } = this.props;
     apiTask
       .deleteTask(task._id)
       .then(_id => dispatch({ type: 'DELETE_TASK', _id }))
       .catch(err => console.error(err));
-  }
+  };
 
   render() {
     return (
-      <div className={appStyle}>
+      <AppStyle>
         <h2 className="App__header">TasksApp</h2>
         <TaskEditor onTaskAdd={this.handleTaskAdd} />
-        <TasksGrid tasks={this.props.tasks} onTaskDelete={this.handleTaskDelete} />
-      </div>
+        <TasksGrid tasks={this.state} onTaskDelete={this.handleTaskDelete} />
+      </AppStyle>
     );
   }
 }
-
-export default connect(state => ({
-  tasks: state,
-}))(App);
+App.propTypes = {
+  dispatch: func.isRequired,
+};
+export default connect()(App);
