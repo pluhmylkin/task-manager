@@ -37,11 +37,7 @@ const TasksGrid = ({ tasks, onTaskDelete }) => (
       {tasks &&
         tasks.map(task => (
           <Task
-            key={task._id}
-            title={task.title}
-            priority={task.priority}
-            position={task.position}
-            status={task.status}
+            {...task}
             onDelete={onTaskDelete}
           >
             {task.title}

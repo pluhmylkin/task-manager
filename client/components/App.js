@@ -43,10 +43,10 @@ class App extends Component {
     this.loadTasks();
   };
 
-  handleTaskDelete = task => {
+  handleTaskDelete = id => {
     const { dispatch } = this.props;
     apiTask
-      .deleteTask(task._id)
+      .deleteTask(id)
       .then(_id => dispatch({ type: 'DELETE_TASK', _id }))
       .catch(err => console.error(err));
   };

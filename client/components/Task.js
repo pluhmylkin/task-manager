@@ -3,6 +3,7 @@ import { string, number, func } from 'prop-types';
 import styled from 'react-emotion';
 
 const propTypes = {
+  _id: string.isRequired,
   onDelete: func.isRequired,
   position: number,
   priority: string,
@@ -34,9 +35,9 @@ const TaskStyle = styled('div')`
   }
 `;
 
-const Task = ({ title, priority, position, status, onDelete }) => (
+const Task = ({ _id, title, priority, position, status, onDelete }) => (
   <TaskStyle>
-    <span onClick={onDelete}>x</span>
+    <span onClick={() => onDelete(_id)}>x</span>
     <h4>{title}</h4>
     <p>
       Priority:
