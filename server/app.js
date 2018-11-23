@@ -1,5 +1,5 @@
-import koa from 'koa';
-import koaRouter from 'koa-router';
+import Koa from 'koa';
+import KoaRouter from 'koa-router';
 import cors from 'koa-cors';
 import koaBody from 'koa-bodyparser';
 import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
@@ -7,8 +7,8 @@ import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
 import taskSchema from './schema/task';
 import config from './helpers/config';
 
-const app = new koa();
-const router = new koaRouter();
+const app = new Koa();
+const router = new KoaRouter();
 const PORT = config.get('port');
 
 router
@@ -22,5 +22,5 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
   .listen(PORT, () => {
-    console.log(`Server listens http://${config.get('port')}:${PORT} ` + new Date());
+    console.log(`Server listens http://${config.get('port')}:${PORT} ${new Date()}`);
   });

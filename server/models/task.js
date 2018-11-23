@@ -1,7 +1,8 @@
 import mongoose from '../helpers/mongoose';
-const Schema = mongoose.Schema;
 
-let schema = new Schema({
+const { Schema } = mongoose;
+
+const schema = new Schema({
   title: {
     type: String,
     requited: true,

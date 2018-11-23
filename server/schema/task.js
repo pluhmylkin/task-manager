@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLSchema, GraphQLList, GraphQLString, GraphQLInt } from 'graphql';
 import Task from '../models/task';
 
-let taskType = new GraphQLObjectType({
+const taskType = new GraphQLObjectType({
   name: 'Task',
   fields: {
     _id: { type: GraphQLString },
@@ -13,7 +13,7 @@ let taskType = new GraphQLObjectType({
   },
 });
 
-let queryType = new GraphQLObjectType({
+const queryType = new GraphQLObjectType({
   name: 'Query',
   fields: {
     getListTask: {
@@ -25,9 +25,8 @@ let queryType = new GraphQLObjectType({
             t._id = t._id.toString();
             return t;
           });
-        } else {
-          return [];
         }
+        return [];
       },
     },
     getTask: {
@@ -41,15 +40,14 @@ let queryType = new GraphQLObjectType({
         const task = await Task.findOne({ _id: args.id });
         if (task) {
           return task;
-        } else {
-          return [];
         }
+        return [];
       },
     },
   },
 });
 
-let mutationType = new GraphQLObjectType({
+const mutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
     addTask: {
@@ -72,14 +70,12 @@ let mutationType = new GraphQLObjectType({
       args: {
         id: { type: GraphQLString },
       },
-      resolve: async (root, args) => {
-        return await Task.remove({ _id: args.id });
-      },
+      resolve: async (root, args) => await Task.remove({ _id: args.id }),
     },
   },
 });
 
-let schema = new GraphQLSchema({
+const schema = new GraphQLSchema({
   query: queryType,
   mutation: mutationType,
 });

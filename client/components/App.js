@@ -9,19 +9,35 @@ import appStyle from '../emotion/app';
 
 class App extends Component {
   componentDidMount() {
-    this.props.loadTasks();
+    this.loadTasks();
+  }
+
+  loadTasks = () => {
+    const { dispatch } = this.props;
+    apiTask
+      .listTasks()
+      .then(listTasks => dispatch({ type: 'LOAD_TASK_SUCCESS', task: listTasks }))
+      .catch(err => console.error(err));
+  };
+
+  handleTaskAdd(newTask) {
+    const { dispatch } = this.props;
+    apiTask
+      .createTask(newTask)
+      .then(task => dispatch({ type: 'ADD_TASK', task }))
+      .catch(err => console.error(err));
   }
 
   handleLoadTasks() {
-    this.props.loadTasks();
-  }
-
-  handleTaskAdd(data) {
-    this.props.addTask(data);
+    this.loadTasks();
   }
 
   handleTaskDelete(task) {
-    this.props.deleteTask(task._id);
+    const { dispatch } = this.props;
+    apiTask
+      .deleteTask(task._id)
+      .then(_id => dispatch({ type: 'DELETE_TASK', _id }))
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -35,28 +51,6 @@ class App extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    tasks: state,
-  }),
-  dispatch => ({
-    addTask: newTask => {
-      apiTask
-        .createTask(newTask)
-        .then(task => dispatch({ type: 'ADD_TASK', task }))
-        .catch(err => console.error(err));
-    },
-    loadTasks: () => {
-      apiTask
-        .listTasks()
-        .then(listTasks => dispatch({ type: 'LOAD_TASK_SUCCESS', task: listTasks }))
-        .catch(err => console.error(err));
-    },
-    deleteTask: taskId => {
-      apiTask
-        .deleteTask(taskId)
-        .then(_id => dispatch({ type: 'DELETE_TASK', _id }))
-        .catch(err => console.error(err));
-    },
-  })
-)(App);
+export default connect(state => ({
+  tasks: state,
+}))(App);

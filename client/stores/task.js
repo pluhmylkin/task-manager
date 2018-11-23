@@ -13,7 +13,7 @@ const TasksStore = (state = [], action) => {
   }
   if (action.type === 'DELETE_TASK') {
     return state.filter(item => item._id !== action._id);
-    //return action.taskID;
+    // return action.taskID;
   }
   return state;
 };

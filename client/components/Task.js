@@ -21,9 +21,18 @@ const Task = ({ title, priority, position, status, onDelete }) => (
   <div className={taskStyle}>
     <span onClick={onDelete}>x</span>
     <h4>{title}</h4>
-    <p>Priority: {priority}</p>
-    <p>Position: {position}</p>
-    <p>Status: {status}</p>
+    <p>
+      Priority:
+      {priority}
+    </p>
+    <p>
+      Position:
+      {position}
+    </p>
+    <p>
+      Status:
+      {status}
+    </p>
   </div>
 );
 

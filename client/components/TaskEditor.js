@@ -13,11 +13,11 @@ class TaskEditor extends Component {
     title: 'test',
   };
 
-  handleTitleChange(event) {
+  handleTitleChange = event => {
     this.setState({ title: event.target.value });
-  }
+  };
 
-  handleTaskAdd() {
+  handleTaskAdd = () => {
     const { title } = this.state;
     const { onTaskAdd } = this.props;
 
@@ -27,7 +27,7 @@ class TaskEditor extends Component {
 
     onTaskAdd(newTask);
     this.setState({ title: '' });
-  }
+  };
 
   render() {
     const { title } = this.state;
