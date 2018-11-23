@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'react-emotion';
-import { func } from 'prop-types';
+import { func, arrayOf, shape } from 'prop-types';
 
 import TaskEditor from './TaskEditor';
 import TasksGrid from './TasksGrid';
@@ -52,16 +52,20 @@ class App extends Component {
   };
 
   render() {
+    const { tasks } = this.props;
     return (
       <AppStyle>
         <h2 className="App__header">TasksApp</h2>
         <TaskEditor onTaskAdd={this.handleTaskAdd} />
-        <TasksGrid tasks={this.state} onTaskDelete={this.handleTaskDelete} />
+        <TasksGrid tasks={tasks} onTaskDelete={this.handleTaskDelete} />
       </AppStyle>
     );
   }
 }
 App.propTypes = {
   dispatch: func.isRequired,
+  tasks: arrayOf(shape({})).isRequired,
 };
-export default connect()(App);
+export default connect(state => ({
+  tasks: state,
+}))(App);

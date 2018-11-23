@@ -30,7 +30,7 @@ const defaultProps = {
 
 const TasksGrid = ({ tasks, onTaskDelete }) => (
   <Masonry className="TasksGrid" options={masonryOptions}>
-    {tasks.map(task => (
+    {tasks && tasks.map(task => (
       <Task
         key={task._id}
         title={task.title}
