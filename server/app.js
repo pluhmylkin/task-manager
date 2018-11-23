@@ -6,10 +6,12 @@ import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
 
 import taskSchema from './schema/task';
 import config from './helpers/config';
+import createLogger from './helpers/logger';
 
 const app = new Koa();
 const router = new KoaRouter();
 const PORT = config.get('port');
+const logger = createLogger('server');
 
 router
   .get('/graphql', graphqlKoa({ schema: taskSchema }))
@@ -22,5 +24,5 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
   .listen(PORT, () => {
-    console.log(`Server listens http://${config.get('port')}:${PORT} ${new Date()}`);
+    logger.info(`Server listens http://${config.get('port')}:${PORT} ${new Date()}`);
   });

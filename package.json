@@ -45,7 +45,9 @@
     "react-emotion": "8.0.12",
     "react-masonry-component": "6.0.2",
     "react-redux": "5.0.6",
-    "redux": "3.7.2"
+    "redux": "3.7.2",
+    "winston": "3.1.0",
+    "winston-daily-rotate-file": "3.5.1"
   },
   "devDependencies": {
     "babel-core": "6.26.0",
